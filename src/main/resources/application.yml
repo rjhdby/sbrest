@@ -16,7 +16,6 @@ spring:
     driverClassName: org.h2.Driver
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
-    show-sql: true
     hibernate:
       ddl-auto: update
 
@@ -29,10 +28,3 @@ logging:
     org:
       springframework:
         web: WARN
-
-management:
-  endpoints:
-    web:
-      cors:
-        allowed-origins: "*"
-        allowed-methods: "*"
