@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  mongo:
+    build: mongo
+    environment:
+      - STORAGE_ENGINE=mmapv1
+    ports:
+      - "27019:27017"
+    logging:
+      driver: none
+  redis:
+    image: clslrns/redis-cluster:latest
+    ulimits:
+      memlock: 9223372036854775807
+      nproc: 131072
+      nofile: 100000
+    sysctls:
+      net.core.somaxconn: 1024
+    logging:
+      driver: none
+  experiments:
+    build:
+      context: ..
+      dockerfile: devel/Dockerfile.current
+    depends_on:
+      - mongo
+      - redis
+    ports:
+      - "8080:8080"
+      - "9090:9090"

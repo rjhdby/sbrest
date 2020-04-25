@@ -1,0 +1,38 @@
+server:
+  port: 433
+  ssl:
+    key-store-type: PKCS12
+    key-store: classpath:keystore/sbrest.p12
+    key-store-password: sbrest
+    key-alias: sbrest
+    enabled: true
+spring:
+  main:
+    banner-mode: "off"
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+jwt:
+  secret: sbrest
+
+logging:
+  level:
+    web: WARN
+    org:
+      springframework:
+        web: WARN
+
+management:
+  endpoints:
+    web:
+      cors:
+        allowed-origins: "*"
+        allowed-methods: "*"
