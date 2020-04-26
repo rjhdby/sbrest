@@ -9,6 +9,7 @@ public class EmployeeValidator {
         if (employee.getRole() == null) {
             return false;
         }
+
         return employee.getRole().isAdmin();
     }
 

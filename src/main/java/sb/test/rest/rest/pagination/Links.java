@@ -35,9 +35,6 @@ public class Links {
     }
 
     private String makeUriString(UriComponents components, int page, int size) {
-        var host = components.getHost();
-        var port = components.getPort();
-        var path = components.getPath();
         MultiValueMap<String, String> params = components.getQueryParams();
 
         var newParams = new LinkedMultiValueMap<>(params);
@@ -48,9 +45,9 @@ public class Links {
 
         return UriComponentsBuilder.newInstance()
             .scheme("https")
-            .host(host)
-            .port(port)
-            .path(path)
+            .host(components.getHost())
+            .port(components.getPort())
+            .path(components.getPath())
             .queryParams(newParams)
             .build()
             .toUriString();
